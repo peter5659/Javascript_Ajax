@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        function firstChange() {
+            document.getElementById("first").innerHTML = prompt("입력");
+        }
+        function secondChange(){
+            let fifth_ele = document.getElementById("fifth");
+            if(fifth_ele.style.visibility=="hidden"){
+                fifth_ele.style.visibility="visible";
+            } else{
+                fifth_ele.style.visibility="hidden";
+            }
+        }
+        function thirdChange(){
+            location.href = "http://www.google.com";
+        }
+        function fourthChange(){
+            if(document.body.style.backgroundColor!="black"){
+                document.body.style.backgroundColor = 'black';
+                document.getElementById("ajax-commu").style.color = "white";
+            } else{
+                document.body.style.backgroundColor = 'white';
+                document.getElementById("ajax-commu").style.color = "black";
+            }
+        }
+        function fifthChange(){
+            $.ajax({
+                url:" http://52.79.198.34/work.php",
+                type: 'GET',
+                success: function(data){
+                    document.getElementById('ajax-commu').innerHTML="";
+                    $('#ajax-commu').append(data);
+                }
+            })
+        }
+    </script>
+    <title>Document</title>
+    <style>
+        button {
+            width : 200px;
+            height: 50px;
+            margin-top: 50px;
+            margin-left : 50px;
+        }
+        .hidden {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <!-- 첫번째 버튼을 클릭하면 prompt창을 띄우고 여기서 입력받은 값으로 버튼 텍스트를 바꿔주세요 -->
+    <button onclick = "firstChange()" id="first">first</button>
+    <br>
+    <!-- 두번째 버튼을 클릭하면 다섯번째 버튼(fifth)이 보였다 안보였다 하게 해주세요 -->
+    <button onclick = "secondChange()" id="second">second</button>
+    <br>
+    <!-- 세번째 버튼을 클릭하면 https://google.com으로 이동하도록 해주세요 -->
+    <button onclick = "thirdChange()" id="third">third</button>
+    <br>
+    <!-- 네번째 버튼을 클릭하면 이 웹페이지의 배경색이 까만색으로 바뀌도록 해주세요 -->
+    <!-- 맨 밑의 h3태그는 흰색으로 바꿔주세요 -->
+    <button onclick = "fourthChange()" id="fourth">fourth</button>
+    <br>
+    <!-- 다섯번째 버튼을 클릭하면 ajax 통신을 통해 아래 h3 태그의 텍스트가 바뀌도록 해주세요-->
+    <!-- url : http://52.79.198.34/work.php-->
+    <!-- request method :  GET -->
+    <!-- response example : (TEXT) "time":"20시 49분 33초 " -->
+    <button onclick = "fifthChange()" id="fifth">fifth</button>
+
+    <br>
+
+    <div>
+        <h3 id="ajax-commu" style="margin-left: 50px; margin-top: 50px">ajax has never been operated.</h3>
+    </div>
+    <script type="text/javascript">
+        // codes here
+        
+    </script>
+</body>
+</html>
